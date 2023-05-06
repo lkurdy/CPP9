@@ -37,11 +37,13 @@ bool	BitcoinExchange::dataParse(std::string	str, float *flo)
 
 bool	BitcoinExchange::txtParse(std::string	str, float *flo)
 {
-	std::istringstream	iss(str);
 	int	year, month, day;
 	char	seperator1, seperator2, seperator3;
 	bool	boo;
 
+	while (std::isspace(str[str.length() - 1]))
+		str.erase(str.length() - 1);
+	std::istringstream	iss(str);
 	iss >> year >> seperator1 >> month >> seperator2 >> day >> seperator3 >> *flo;
 	boo = iss.eof() && seperator1 == '-' && seperator2 == '-' && seperator3 == '|'
 		&& month >= 1 && month <= 12 && day >= 1 && day <= 31;
@@ -62,6 +64,8 @@ void	BitcoinExchange::fillMap(std::string s, float f)
 void	BitcoinExchange::print(std::string str, float f)
 {
 	std::map<std::string, float>::iterator	it = M.upper_bound(str);
+	if (it == M.begin())
+		it++;
 	it--;
 	std::cout << str << " => " << f << " = " << f * it->second << std::endl;
 }
