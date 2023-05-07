@@ -32,16 +32,19 @@ void	RPN::doDaTing(std::string str)
 	{
 		if (std::isdigit(c))
 		{
-			iss.putback(c);
-			iss >> a;
+//			iss.putback(c);
+//			iss >> a;
+			a = c - '0';
 			S.push(a);
 		}
+		/*
 		else if (c == '-' && std::isdigit(iss.peek()))
 		{
 			iss >> a;
 			a *= -1;
 			S.push(a);
 		}
+		*/
 		else if (c == '+' || c == '-' || c == '*' || c == '/')
 		{
 			if (S.size() < 2)
