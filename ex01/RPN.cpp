@@ -61,7 +61,15 @@ void	RPN::doDaTing(std::string str)
 				case '+': a = a + b; break;
 				case '-': a = a - b; break;
 				case '*': a = a * b; break;
-				case '/': a = a / b; break;
+				case '/': 
+					if (b == 0)
+					{
+						std::cout << "Can't dived by 0\n";
+						exit(1);
+					}
+					else
+						a = a / b;
+					break;
 			}
 			S.push(a);
 		}
