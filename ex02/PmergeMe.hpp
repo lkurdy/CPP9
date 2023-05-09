@@ -7,8 +7,7 @@
 # include <vector>
 # include <algorithm>
 # include <sstream>
-# include <iterator>
-# include <sys/time.h>
+# include <ctime>
 
 class   PmergeMe
 {

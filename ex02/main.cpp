@@ -10,22 +10,21 @@ int	main(int argc, char **argv)
 	for (int i = 1; argv[i]; i++)
 		pm.putDQ(argv[i]);
 
-	struct timeval start, end;
-
+	clock_t	start, end;
 	std::cout << "Before: ";
 	pm.printV();
 	std::cout << std::endl;
 
-	gettimeofday(&start, NULL);
+	start = clock();
 
 	pm.sortV(0, pm.sizeV() - 1);
 
-	gettimeofday(&end, NULL);
+	end = clock();
 
 	std::cout << "After: ";
 	pm.printV();
 	std::cout << std::endl;
-	double	time = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec);
+	double	time = static_cast<double> (end - start) / CLOCKS_PER_SEC * 1000000;
 	std::cout << "Processed " << pm.sizeV() << " ints in a std::vector in " << time << " us\n";
 
 
@@ -33,16 +32,16 @@ int	main(int argc, char **argv)
 	pm.printDQ();
 	std::cout << std::endl;
 
-	gettimeofday(&start, NULL);
+	start = clock();
 
 	pm.sortDQ(0, pm.sizeDQ() - 1);
 
-	gettimeofday(&end, NULL);
+	end = clock();
 
 	std::cout << "After: ";
 	pm.printDQ();
 	std::cout << std::endl;
-	time = (end.tv_sec - start.tv_sec) + (end.tv_usec - start.tv_usec);
+	time = static_cast<double> (end - start) / CLOCKS_PER_SEC * 1000000;
 	std::cout << "Processed " << pm.sizeDQ() << " ints in a std::deque in " << time << " us\n";
 	return (0);
 }
