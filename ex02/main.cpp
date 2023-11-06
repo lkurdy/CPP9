@@ -24,8 +24,8 @@ int	main(int argc, char **argv)
 	std::cout << "After: ";
 	pm.printV();
 	std::cout << std::endl;
-	double	time = static_cast<double> (end - start) / CLOCKS_PER_SEC * 1000000;
-	std::cout << "Processed " << pm.sizeV() << " ints in a std::vector in " << time << " us\n";
+	double	time = static_cast<double> (end - start) * 1000 / CLOCKS_PER_SEC;
+	std::cout << "Processed " << pm.sizeV() << " ints in a std::vector in " << time << " ms\n";
 
 
 	std::cout << "Before: ";
@@ -41,8 +41,8 @@ int	main(int argc, char **argv)
 	std::cout << "After: ";
 	pm.printDQ();
 	std::cout << std::endl;
-	time = static_cast<double> (end - start) / CLOCKS_PER_SEC * 1000000;
-	std::cout << "Processed " << pm.sizeDQ() << " ints in a std::deque in " << time << " us\n";
+	time = static_cast<double> (end - start) * 1000 / CLOCKS_PER_SEC;
+	std::cout << "Processed " << pm.sizeDQ() << " ints in a std::deque in " << time << " ms\n";
 	return (0);
 }
 
